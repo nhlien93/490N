@@ -24,7 +24,7 @@ train = spatFilt(classtrain,PTranspose,2);
 %plot it
 %scatter3(classtrain(1,:),classtrain(2,:),classtrain(3,:))
 
-%figure;scatter(train(1,:),train(2,:))
+figure;scatter(train(1,:),train(2,:))
 
 
 % linear bayes classifier

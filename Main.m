@@ -17,7 +17,7 @@ e_class = abs(classifier);
 
 %perpare data for discerning different movements\
 split = arrayfun(@(x) cnt(classifier == x, :), unique(classifier), 'uniformoutput', false);
-
-m_cnt = [split{1};split{3}];
+m_cnt = [split{1};split{3}]; 
+m_class = sort(classifier(classifier ~= 0));
 [m_lo, m_hi, m_cspW, m_ldaW] = GetWeightsAndFrequencies(cnt, classifier);
 

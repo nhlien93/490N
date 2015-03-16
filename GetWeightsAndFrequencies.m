@@ -1,4 +1,6 @@
 function [maxlo, maxhi, cspW, ldaW] = GetWeightsAndFrequencies(cnt, classifier)
+% loop through all important frequency bands
+% starting from 1 HZ, ending at 23 HZ
     lo = 1;
     hi = 3;
     maxlo = 1;
@@ -7,12 +9,12 @@ function [maxlo, maxhi, cspW, ldaW] = GetWeightsAndFrequencies(cnt, classifier)
     maxY = zeros(size(cnt, 1), 59);
     while hi <= 23
         [a, b] = butterTwoBp(1/100, lo, hi);
-        Y = zeros(190594, 59);
+        Y = zeros(size(cnt, 1), 59);
         for n = 1:59
             Y(:, n) = filter(a, b, cnt(:,n));
         end
 
-        YHilb = abs(hilber(Y)) .^ 2;
+        YHilb = abs(hilbert(Y)) .^ 2;
 
         score = CrossValidation(YHilb, classifier);
         if score > maxscore

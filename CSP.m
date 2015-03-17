@@ -1,7 +1,6 @@
 %   CSP Function
 
 %   Coded by James Ethridge and William Weaver
-
 function [result] = CSP(varargin)
     
 
@@ -9,20 +8,11 @@ function [result] = CSP(varargin)
         disp('Must have 2 classes for CSP!')
     end
     
-    %Rsum=0;
     %finding the covariance of each class and composite covariance
     R1 = ((varargin{1}*varargin{1}')/trace(varargin{1}*varargin{1}'));
     R2 = ((varargin{2}*varargin{2}')/trace(varargin{2}*varargin{2}'));
     Rsum = R1+R2;
-    %for i = 1:nargin 
-        %mean here?
-    %    R{i} = ((varargin{i}*varargin{i}')/trace(varargin{i}*varargin{i}'));%instantiate me before the loop!
-        %Ramoser equation (2)
-    %    Rsum=Rsum+R{i};
-    %end
-    
-    
-   
+
     %   Find Eigenvalues and Eigenvectors of RC
     %   Sort eigenvalues in descending order
     [EVecsum,EValsum] = eig(Rsum);
@@ -34,29 +24,13 @@ function [result] = CSP(varargin)
     
     S1 = W * R1 * W';
     S2 = W * R2 * W';
-    % for k = 1:nargin
-    %    S{k} = W * R{k} * W'; %       Whiten Data Using Whiting Transform - Ramoser Equation (4)
-    %end
-    
-    
-    
-    % Ramoser equation (5)
-   % [U{1},Psi{1}] = eig(S{1});
-   % [U{2},Psi{2}] = eig(S{2});
-    
+
     %generalized eigenvectors/values
-    %[B,D] = eig(S{1},S{2});
     [B,D] = eig(S1,S2);
     % Simultanous diagonalization
-			% Should be equivalent to [B,D]=eig(S{1});
-    
-    %verify algorithim
-    %disp('test1:Psi{1}+Psi{2}=I')
-    %Psi{1}+Psi{2}
+			% Should be equivalent to [B,D]=eig(S1);
     
     %sort ascending by default
-    %[Psi{1},ind] = sort(diag(Psi{1})); U{1} = U{1}(:,ind);
-    %[Psi{2},ind] = sort(diag(Psi{2})); U{2} = U{2}(:,ind);
     [~,ind]=sort(diag(D));B=B(:,ind);
     
     %Resulting Projection Matrix-these are the spatial filter coefficients

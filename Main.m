@@ -18,7 +18,7 @@ m_cnt = [split{1};split{3}];
 m_class = sort(classifier(classifier ~= 0));
 [m_lo, m_hi, m_cspW, m_ldaW] = GetWeightsAndFrequencies(cnt, classifier);
 
-evaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
+%evaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
 
 
 

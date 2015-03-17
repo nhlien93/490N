@@ -9,8 +9,8 @@ elseif (traincol ~= 1)
 end
 trainsplit = arrayfun(@(x) traindata(trainclass == x, :), unique(trainclass), 'uniformoutput', false);
 disp('Starting CSP');
-PTranspose = CSP(trainsplit{1},trainsplit{2});
-train = spatFilt(traindata,PTranspose,59);
+PTranspose = CSP(trainsplit{1}',trainsplit{2}');
+train = spatFilt(traindata',PTranspose,59);
 disp('Starting LDA');
 W = LDA(train,trainclass);
 

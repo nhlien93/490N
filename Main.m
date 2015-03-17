@@ -18,22 +18,25 @@ m_class = zeros(size(cnt, 1) - zeroLength, 1);
 i = 1;
 for j = 1:size(cnt, 1)
     if classifier(j) == -1
-        m_class(j) = 0;
+        m_class(i) = 0;
         m_cnt(i, :) = cnt(j, :);
         i = i + 1;
     elseif classifier(j) == 1
         m_cnt(i, :) = cnt(j, :);
-        m_class(j) = 1;
+        m_class(i) = 1;
         i = i + 1;
     end
 end
-
-
-m_class = sort(classifier(classifier ~= 0));
-disp(m_class);
-[m_lo, m_hi, m_cspW, m_ldaW] = GetWeightsAndFrequencies(cnt, classifier);
-
-evaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
+disp(size(m_cnt, 1));
+disp(size(m_class, 1));
+[m_lo, m_hi, m_cspW, m_ldaW] = GetWeightsAndFrequencies(m_cnt, m_class);
+disp('Frequency band for movement/non-movement is');
+disp(e_lo);
+disp(e_hi);
+disp('Frequency band for different movements is');
+disp(m_lo);
+disp(m_hi);
+EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
 
 
 

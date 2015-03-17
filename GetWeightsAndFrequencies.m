@@ -1,8 +1,8 @@
 function [maxlo, maxhi, cspW, ldaW] = GetWeightsAndFrequencies(cnt, classifier)
 % loop through all important frequency bands
 % starting from 1 HZ, ending at 23 HZ
-    lo = 1;
-    hi = 3;
+    lo = 21;
+    hi = 23;
     maxlo = 1;
     maxhi = 3;
     maxscore = 0;
@@ -29,5 +29,5 @@ function [maxlo, maxhi, cspW, ldaW] = GetWeightsAndFrequencies(cnt, classifier)
         lo = lo + 2;
     end
     %pass in dummy testdata parameter cause we don't care
-    [~, cspW, ldaW] = ClassSplit(maxY, classifier, zeros(100, 59));
+    [~, cspW, ldaW] = ClassSplit(maxY, classifier, zeros(100, 59), zeros(100, 1));
 end

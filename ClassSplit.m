@@ -1,4 +1,4 @@
-function P = ClassSplit(traindata, classifier, testdata)
+function P = ClassSplit(traindata, classifier, testdata, testclass)
 trow = size(traindata, 1);
 [row, col] = size(classifier);
 if (trow ~= row)

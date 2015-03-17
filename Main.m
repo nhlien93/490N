@@ -33,18 +33,23 @@ end
 disp(size(m_cnt, 1));
 disp(size(m_class, 1));
 [m_lo, m_hi, m_cspW, m_ldaW] = GetWeightsAndFrequencies(m_cnt, m_class);
-disp('Frequency band for movement/non-movement is');
-disp(e_lo);
-disp(e_hi);
-disp('Frequency band for different movements is');
-disp(m_lo);
-disp(m_hi);
+% disp('Frequency band for movement/non-movement is');
+% disp(e_lo);
+% disp(e_hi);
+% disp('Frequency band for different movements is');
+% disp(m_lo);
+% disp(m_hi);
 
-EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
+[index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
 endtime = toc;
 totaltime = toc - tic;
-disp('Time algorithm took:');
-disp(totaltime);
+% disp('Time algorithm took:');
+% disp(totaltime);
 
-
+results.index = index;
+results.final_score = final_score;
+results.e = [e_lo, e_hi];
+results.m = [m_lo, m_hi];
+results.total_time = totaltime;
+save('results_a.mat','-struct','results'); 
 

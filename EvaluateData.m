@@ -1,4 +1,4 @@
-function EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW)
+function [index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW)
     data = load('BCICIV_eval_ds1a.mat');
     cnt = 0.1 * double(data.cnt);
     disp('Evaluating for movement/non-movement');
@@ -51,4 +51,5 @@ function EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW)
     
     final_score = match / (length - nans);
     disp(strcat('final score for algorithm is', num2str(final_score)));
+    
 end

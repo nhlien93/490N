@@ -15,7 +15,9 @@ function [maxlo, maxhi, cspW, ldaW] = GetWeightsAndFrequencies(cnt, classifier)
         end
 
         YHilb = abs(hilbert(Y)) .^ 2;
-
+        disp('Frequencies are');
+        disp(lo);
+        disp(hi);
         score = CrossValidation(YHilb, classifier);
         if score > maxscore
             maxscore = score;

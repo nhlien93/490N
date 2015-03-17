@@ -4,7 +4,7 @@
 
 starttime = tic;
 
-data = load('BCICIV_calib_ds1a.mat');
+data = load('BCICIV_calib_ds1b.mat');
 
 data.cnt = 0.1 * double(data.cnt);
 [cnt, classifier] = ParseDataAndClassifier(data);

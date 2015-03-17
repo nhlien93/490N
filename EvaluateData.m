@@ -1,5 +1,6 @@
 function [index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW)
     data = load('BCICIV_eval_ds1b.mat');
+
     cnt = 0.1 * double(data.cnt);
     disp('Evaluating for movement/non-movement');
     index = EvaluationAlg(cnt, e_cspW, e_ldaW, e_lo, e_hi);

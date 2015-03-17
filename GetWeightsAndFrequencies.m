@@ -19,6 +19,8 @@ function [maxlo, maxhi, cspW, ldaW] = GetWeightsAndFrequencies(cnt, classifier)
         disp(lo);
         disp(hi);
         score = CrossValidation(YHilb, classifier);
+        disp('Score for this freq is');
+        disp(score);
         if score > maxscore
             maxscore = score;
             maxlo = lo;

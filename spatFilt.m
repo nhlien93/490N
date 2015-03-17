@@ -12,7 +12,7 @@
 
 function Y = spatFilt(x, coef, dimm)
 
-    [m n] = size(coef)
+    [m, n] = size(coef);
 
     %check for valid dimensions
     if(m<dimm)

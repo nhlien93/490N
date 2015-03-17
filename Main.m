@@ -2,8 +2,6 @@
 % loading data from files, change URL accordingly
 % Assume data exists locally
 data = load('BCICIV_calib_ds1a.mat');
-%use if attempting to get data from lindsey's attu
-%data = load('\\cseexec.cs.washington.edu\cs\nt\homes\istudents\nhlien93\490n\BCICIV_calib_ds1a.mat');
 
 data.cnt = 0.1 * double(data.cnt);
 [cnt, classifier] = ParseDataAndClassifier(data);

@@ -2,9 +2,9 @@
 % loading data from files, change URL accordingly
 % Assume data exists locally
 
-starttime = tic;
+% starttime = tic;
 
-data = load('BCICIV_calib_ds1a.mat');
+data = load('BCICIV_calib_ds1f.mat');
 
 data.cnt = 0.1 * double(data.cnt);
 [cnt, classifier] = ParseDataAndClassifier(data);
@@ -41,8 +41,8 @@ disp(size(m_class, 1));
 % disp(m_hi);
 
 [index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
-endtime = toc;
-totaltime = toc - tic;
+% endtime = tic;
+% totaltime = endtime - starttime;
 % disp('Time algorithm took:');
 % disp(totaltime);
 
@@ -50,6 +50,6 @@ results.index = index;
 results.final_score = final_score;
 results.e = [e_lo, e_hi];
 results.m = [m_lo, m_hi];
-results.total_time = totaltime;
+% results.total_time = totaltime;
 save('results_a.mat','-struct','results'); 
 

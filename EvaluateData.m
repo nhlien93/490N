@@ -1,5 +1,5 @@
 function [index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW)
-    data = load('BCICIV_eval_ds1a.mat');
+    data = load('BCICIV_eval_ds1f.mat');
     cnt = 0.1 * double(data.cnt);
     disp('Evaluating for movement/non-movement');
     index = EvaluationAlg(cnt, e_cspW, e_ldaW, e_lo, e_hi);
@@ -34,7 +34,7 @@ function [index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m
     end
     
     disp('Checking results against actual labels');
-    true_data = load('BCICIV_eval_ds1e_1000Hz_true_y.mat');
+    true_data = load('BCICIV_eval_ds1f_1000Hz_true_y.mat');
     true_y = true_data.true_y;
     true_y_trunc = true_y(1:10:end);
     match = 0;

@@ -10,14 +10,30 @@ data.cnt = 0.1 * double(data.cnt);
 
 %prepare data for discerning ERS/ERD
 e_class = abs(classifier);
-%[e_lo, e_hi, e_cspW, e_ldaW] = GetWeightsAndFrequencies(cnt, e_class);
+% [e_lo, e_hi, e_cspW, e_ldaW] = GetWeightsAndFrequencies(cnt, e_class);
 
 %perpare data for discerning different movements\
 split = arrayfun(@(x) cnt(classifier == x, :), unique(classifier), 'uniformoutput', false);
-m_cnt = [split{1};split{3}]; 
+zeroLength = size(split{2}, 1);
+m_cnt = zeros(size(cnt, 1) - zeroLength, 59);
+m_class = zeros(size(cnt, 1) - zeroLength, 1);
+i = 1;
+for j = 1:size(cnt, 1)
+    if classifier(j) == -1
+        m_class(j) = 0;
+        m_cnt(i, :) = cnt(j, :);
+        i = i + 1;
+    elseif classifier(j) == 1
+        m_cnt(i, :) = cnt(j, :);
+        m_class(j) = 1;
+        i = i + 1;
+    end
+end
+
+
 m_class = sort(classifier(classifier ~= 0));
 disp(m_class);
-%[m_lo, m_hi, m_cspW, m_ldaW] = GetWeightsAndFrequencies(cnt, classifier);
+[m_lo, m_hi, m_cspW, m_ldaW] = GetWeightsAndFrequencies(cnt, classifier);
 
 %evaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
 

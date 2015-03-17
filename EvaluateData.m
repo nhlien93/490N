@@ -10,5 +10,23 @@ function EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW)
     YHilb = abs(hilbert(Y)) .^ 2;
     
     e_eval = spatFilt(YHilb',e_cspW, 59)';
+    % Calulcate linear scores for training data
+    length = size(e_eval, 1);
+    L = [ones(length,1) e_eval] * e_ldaW';
+
+    % Calculate class probabilities
+    P = (exp(L) ./ repmat(sum(exp(L),2),[1 2]))';
+
+    [~, index] = max(P);
+    index = (index - 1)';
     
+    match = 0;
+    for i = 1:length
+        if index(i) == testclass(i)
+            match = match + 1;
+        end
+    end
+
+    Percent = match / length;
+
 end

@@ -1,4 +1,5 @@
 function [Percent, PTranspose, W] = ClassSplit(traindata, trainclass, testdata, testclass)
+
 trow = size(traindata, 1);
 [trainrow, traincol] = size(trainclass);
 if (trow ~= trainrow)
@@ -7,10 +8,10 @@ if (trow ~= trainrow)
 elseif (traincol ~= 1)
     disp('there should only be 1 class in the classifer per row');
 end
-trainsplit = arrayfun(@(x) traindata(trainclass == x, :), unique(trainclass), 'uniformoutput', false);
+trainsplit = arrayfun(@(x) traindata(trainclass == x,:), unique(trainclass), 'uniformoutput', false);
 disp('Starting CSP');
 PTranspose = CSP(trainsplit{1}',trainsplit{2}');
-train = spatFilt(traindata',PTranspose,59);
+train = spatFilt(traindata',PTranspose,59)';
 disp('Starting LDA');
 W = LDA(train,trainclass);
 

@@ -1,6 +1,9 @@
 %  Neuroeng BCI algorthim implementation
 % loading data from files, change URL accordingly
 % Assume data exists locally
+
+starttime = tic;
+
 data = load('BCICIV_calib_ds1a.mat');
 
 data.cnt = 0.1 * double(data.cnt);
@@ -36,7 +39,12 @@ disp(e_hi);
 disp('Frequency band for different movements is');
 disp(m_lo);
 disp(m_hi);
+
 EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW);
+endtime = toc;
+totaltime = toc - tic;
+disp('Time algorithm took:');
+disp(totaltime);
 
 
 

@@ -1,7 +1,7 @@
 function S = CrossValidation(parsedData, classes)
-kSize = size(parsedData, 1) / 2;
+kSize = size(parsedData, 1) / 10;
 runningScore = 0;
-for i = 0:0 %TODO: change back
+for i = 0:9 %TODO: change back
     leftIndex = (i * kSize) + 1;
     rightIndex = (i + 1) * kSize; 
     testData = parsedData(leftIndex: rightIndex, :);
@@ -13,5 +13,5 @@ for i = 0:0 %TODO: change back
     [Percent, ~, ~] = ClassSplit(trainData, trainClasses, testData, testClasses);
     runningScore = runningScore + Percent;
 end
-S = runningScore / 2;
+S = runningScore / 10;
 end

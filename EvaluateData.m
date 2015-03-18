@@ -1,12 +1,12 @@
 function [index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m_hi, m_cspW, m_ldaW)
-    data = load('BCICIV_eval_ds1b.mat');
+    data = load('BCICIV_eval_ds1g.mat');
 
     cnt = 0.1 * double(data.cnt);
     disp('Evaluating for movement/non-movement');
     index = EvaluationAlg(cnt, e_cspW, e_ldaW, e_lo, e_hi);
     
     % filter out non-movement data
-    zeroLength = size(index(index ~= 0), 1);
+    zeroLength = size(index(index == 0), 1);
     m_cnt = zeros(size(cnt, 1) - zeroLength, 59);
     i = 1;
     for j = 1:size(cnt, 1)
@@ -35,7 +35,7 @@ function [index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m
     end
     
     disp('Checking results against actual labels');
-    true_data = load('BCICIV_eval_ds1b_1000Hz_true_y.mat');
+    true_data = load('BCICIV_eval_ds1g_1000Hz_true_y.mat');
     true_y = true_data.true_y;
     true_y_trunc = true_y(1:10:end);
     match = 0;
@@ -51,6 +51,6 @@ function [index, final_score] = EvaluateData(e_lo, e_hi, e_cspW, e_ldaW, m_lo, m
     end
     
     final_score = match / (length - nans);
-    disp(strcat('final score for algorithm is', num2str(final_score)));
+    disp(strcat('final score for algorithm is ', num2str(final_score)));
     
 end

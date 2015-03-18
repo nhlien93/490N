@@ -11,7 +11,7 @@ data = load('BCICIV_calib_ds1g.mat');
 e_class = abs(classifier);
 [e_lo, e_hi, e_cspW, e_ldaW] = GetWeightsAndFrequencies(cnt, e_class);
 
-%perpare data for discerning different movements\
+%perpare data for discerning different movements
 split = arrayfun(@(x) cnt(classifier == x, :), unique(classifier), 'uniformoutput', false);
 zeroLength = size(split{2}, 1);
 m_cnt = zeros(size(cnt, 1) - zeroLength, 59);
@@ -49,5 +49,5 @@ results.final_score = final_score;
 results.e = [e_lo, e_hi];
 results.m = [m_lo, m_hi];
 % results.total_time = totaltime;
-save('results_b.mat','-struct','results'); 
+save('results_g.mat','-struct','results'); 
 
